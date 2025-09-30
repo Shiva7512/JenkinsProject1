@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: myapp1
-  namespace: myns
+  namespace: mytg
 spec:
   replicas: 5
   selector:
@@ -17,9 +17,6 @@ spec:
        - name: passwd-for-docker-hub
      containers:
        - name: tomcat
-         image:  shivadocker7512/shivhub:${BUILD_NUMBER}
+         image:  shivadocker7512/shivhub:BUILD_NUMBER
          ports:
           - containerPort: 8080
-
-
-
