@@ -17,7 +17,8 @@ spec:
        - name: passwd-for-docker-hub
      containers:
        - name: tomcat
-         image:  shivadocker7512/shivhub:BUILD_NUMBER
+         image:  shivadocker7512/shivhub:prname-BUILD_NUMBER
          ports:
           - containerPort: 8080
+
 
