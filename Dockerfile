@@ -2,25 +2,14 @@ FROM rockylinux:9.3.20231119
 
 MAINTAINER "shivag@gmail.com"
 
-# Install Java 17
-RUN dnf install -y java-17-openjdk java-17-openjdk-devel wget tar && \
-    dnf clean all
+RUN  yum install -y java-17-openjdk java-17-openjdk-devel 
 
-# Set environment variables
-ENV JAVA_HOME=/usr/lib/jvm/java-17-openjdk
-ENV PATH=$JAVA_HOME/bin:$PATH
+COPY Dockerfile  /root/
 
-# Download & install Tomcat 8.5.89
-WORKDIR /opt
-RUN wget https://downloads.apache.org/tomcat/tomcat-8/v8.5.89/bin/apache-tomcat-8.5.89.tar.gz && \
-    tar -xvzf apache-tomcat-8.5.89.tar.gz && \
-    mv apache-tomcat-8.5.89 tomcat && \
-    rm apache-tomcat-8.5.89.tar.gz
+ADD apache-tomcat-8.5.89.tar.gz  /opt
 
-WORKDIR /opt/tomcat/bin
+WORKDIR /opt/apache-tomcat-8.5.89/bin/
 
-# Expose Tomcat default port
-EXPOSE 8080
+EXPOSE 8080 8085 8081 443
 
-# Start Tomcat
-CMD ["./catalina.sh", "run"]
+CMD ["/opt/apache-tomcat-8.5.89/bin/catalina.sh","run"]
