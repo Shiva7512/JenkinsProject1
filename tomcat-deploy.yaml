@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: myapp1
-  namespace: mytg
+  namespace: myns
 spec:
   replicas: 5
   selector:
@@ -20,3 +20,4 @@ spec:
          image:  shivadocker7512/shivhub:BUILD_NUMBER
          ports:
           - containerPort: 8080
+
